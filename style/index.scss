@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap');
+@import 'custom';
+@import "~bootstrap/scss/bootstrap";
+
+//@include media-breakpoint-down(sm) {
+//    .container {
+//        @include make-container(30px);
+//        @include make-container-max-widths();
+//    }
+//
+//    // 100% wide container at all breakpoints
+//    .container-fluid {
+//        @include make-container(30px);
+//    }
+//
+//    .row {
+//        @include make-row(30px);
+//    }
+//
+//    @include make-grid-columns($grid-columns, 30px);
+//}
