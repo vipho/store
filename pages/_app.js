@@ -18,7 +18,13 @@ class MyApp extends App {
     static async getInitialProps(appContext) {
       // calls page's `getInitialProps` and fills `appProps.pageProps`
       const appProps = await App.getInitialProps(appContext);
-      const generalInfo = await fetchGeneralInfo()
+
+      let generalInfo
+      try {
+          generalInfo = await fetchGeneralInfo()
+      } catch (e) {
+          generalInfo = {}
+      }
 
       return { ...appProps, generalInfo }
     }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { inject, observer } from 'mobx-react'
 
 import Contacts from './Contacts'
-import HeaderMenu from './HeaderMenu'
+import LayoutHeaderMenu from './LayoutHeaderMenu'
 
 import IconMenu from '../assets/IconMenu'
 import IconClose from "../assets/IconClose"
@@ -14,7 +14,7 @@ export default inject('store')(observer((props) => {
 
     return (
         <header>
-            <div className="container py-4">
+            <div className="p-4">
                 <div className="container">
                     <div className="row align-items-center flex-nowrap">
                         <div className="col d-none d-md-block">
@@ -32,7 +32,7 @@ export default inject('store')(observer((props) => {
                     </div>
                 </div>
             </div>
-            <HeaderMenu
+            <LayoutHeaderMenu
                 contacts={contacts}
                 links={navLinks}
                 opened={menuActive}
@@ -44,8 +44,7 @@ export default inject('store')(observer((props) => {
                 .site-name {
                     font-size: 24px;
                     color: $body-color;
-                    font-family: 'Montserrat', sans-serif;
-                    font-weight: 300;
+                    font-family: 'Pacifico', cursive;
                 }
                 .menu-icon {
                     cursor: pointer;
