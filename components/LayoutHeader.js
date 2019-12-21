@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { inject, observer } from 'mobx-react'
+import Link from 'next/link'
 
 import Contacts from './Contacts'
 import LayoutHeaderMenu from './LayoutHeaderMenu'
@@ -20,7 +21,7 @@ export default inject('store')(observer((props) => {
                         <div className="col d-none d-md-block">
                             { contacts && <Contacts contacts={contacts}/> }
                         </div>
-                        <div className="col-auto flex-shrink-1"><span className="site-name text-break">{siteName}</span></div>
+                        <div className="col-auto flex-shrink-1"><Link href="/"><a className="site-name text-break">{siteName}</a></Link></div>
                         <div className="col">
                             <i
                                 className="menu-icon"
@@ -45,6 +46,7 @@ export default inject('store')(observer((props) => {
                     font-size: 24px;
                     color: $body-color;
                     font-family: 'Pacifico', cursive;
+                    text-decoration: none;
                 }
                 .menu-icon {
                     cursor: pointer;

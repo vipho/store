@@ -1,8 +1,17 @@
+$store-color-primary: #93b5b3;
+$store-color-secondary: #c8dad3;
+$store-color-light: #f2f6f5;
+$store-color-dark: #63707e;
+
+$input-border-color: $store-color-secondary;
+$input-focus-border-color: $store-color-secondary;
+$component-active-bg: $store-color-secondary;
+$primary: $store-color-primary;
 $grid-gutter-width: 48px;
-$body-color: #63707e;
+$body-color: $store-color-dark;
 $lead-font-weight: 200;
 $lead-font-size: 18px;
 $font-family-sans-serif: 'Montserrat', sans-serif;
 $container-max-widths: (
-        xl: 1140px
+    xl: 1140px
 );
