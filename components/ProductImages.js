@@ -22,22 +22,24 @@ export default ({ product }) => {
             </div>
             {
                 images.length !== 0 && (
-                    <div className="mini-image-container mx-4">
-                        {
-                            product.images.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className="p-4"
-                                >
-                                    <div onClick={() => setActiveImage(item)} className={classNames('mini-image', { 'mini-image_active': activeImage === item })}>
-                                        <div
-                                            className="mini-image__image"
-                                            style={{ backgroundImage: `url(${process.env.API_URL}${item.url})` }}
-                                        />
+                    <div className="container">
+                        <div className="row">
+                            {
+                                product.images.map((item) => (
+                                    <div
+                                        key={item.id}
+                                        className="col-sm-3 col-4 py-4"
+                                    >
+                                        <div onClick={() => setActiveImage(item)} className={classNames('mini-image mini-image_mini', { 'mini-image_active': activeImage === item })}>
+                                            <div
+                                                className="mini-image__image"
+                                                style={{ backgroundImage: `url(${process.env.API_URL}/${item.url})` }}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            ))
-                        }
+                                ))
+                            }
+                        </div>
                     </div>
                 )
             }
@@ -51,13 +53,9 @@ export default ({ product }) => {
                     display: block;
                     border-radius: 4px;
                 }
-                .mini-image-container {
-                    overflow-x: auto;
-                    display: flex;
-                }
                 .mini-image {
                     margin: 0 auto;
-                    width: 128px;
+                    max-width: 128px;
                     cursor: pointer;
                     padding: 1px;
                     border-radius: 4px;
