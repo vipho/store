@@ -47,7 +47,7 @@ export default ({ product }) => {
                 @import 'everywhere.scss';
                 
                 .image {
-                    max-width: 300px;
+                    max-width: 100%;
                     max-height: 400px;
                     margin: 0 auto;
                     display: block;
