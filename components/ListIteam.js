@@ -6,7 +6,7 @@ export default ({ data }) => {
 
     const images = data.images || []
     const image = images[0] || {}
-    const imageURL = image.url ? `${process.env.API_URL}/${image.url}` : '/assets/teddy-bear.png'
+    const imageURL = image.url ? `${process.env.API_URL}${image.url}` : '/assets/teddy-bear.png'
 
     return (
         <div className="col-sm-4 col-md-3 py-4">
@@ -52,7 +52,8 @@ export default ({ data }) => {
                 }
                 .product__price {
                     margin: 4px 0 0 0;
-                    text-align: right;
+                    text-align: center;
+                    font-weight: 500;
                 }
             `}</style>
         </div>

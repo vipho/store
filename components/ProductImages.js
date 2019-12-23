@@ -4,14 +4,21 @@ import classNames from 'classnames'
 export default ({ product }) => {
     const images = product.images || []
     const [activeImage, setActiveImage] = useState(images[0])
+    const imageSrc = activeImage ? ( process.env.API_URL + activeImage.url ) : '/assets/teddy-bear.png'
 
     return (
         <>
-            <div className="product p-4">
-                <div
-                    className="product__image"
-                    style={{ backgroundImage: activeImage ? `url(${process.env.API_URL}/${activeImage.url})` : null }}
-                />
+            <div className="p-4">
+                <a
+                    href={imageSrc}
+                    target="_blank"
+                >
+                    <img
+                        className="image"
+                        src={imageSrc}
+                        alt={product.title}
+                    />
+                </a>
             </div>
             {
                 images.length !== 0 && (
@@ -21,11 +28,11 @@ export default ({ product }) => {
                                 product.images.map((item) => (
                                     <div
                                         key={item.id}
-                                        className="col-4 py-4"
+                                        className="col-sm-3 col-4 py-4"
                                     >
-                                        <div onClick={() => setActiveImage(item)} className={classNames('product product_mini', { 'product_active': activeImage === item })}>
+                                        <div onClick={() => setActiveImage(item)} className={classNames('mini-image mini-image_mini', { 'mini-image_active': activeImage === item })}>
                                             <div
-                                                className="product__image"
+                                                className="mini-image__image"
                                                 style={{ backgroundImage: `url(${process.env.API_URL}/${item.url})` }}
                                             />
                                         </div>
@@ -38,21 +45,25 @@ export default ({ product }) => {
             }
             <style jsx>{`
                 @import 'everywhere.scss';
-
-                .product {
-                    max-width: 400px;
+                
+                .image {
+                    max-width: 300px;
+                    max-height: 400px;
                     margin: 0 auto;
+                    display: block;
+                    border-radius: 4px;
                 }
-                .product_active {
-                    border: 1px solid #93b5b3;
-                }
-                .product_mini {
+                .mini-image {
+                    margin: 0 auto;
                     max-width: 128px;
                     cursor: pointer;
                     padding: 1px;
                     border-radius: 4px;
                 }
-                .product__image {
+                .mini-image_active {
+                    border: 1px solid #93b5b3;
+                }
+                .mini-image__image {
                     width: 100%;
                     padding-top: 100%;
                     background: 100% 100% no-repeat;
