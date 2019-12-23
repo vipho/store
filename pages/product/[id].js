@@ -8,10 +8,16 @@ import ProductImages from "../../components/ProductImages"
 import ProductDescription from "../../components/ProductDescription"
 
 const Index = inject('store')(observer(({ product, store }) => {
+    const images = product.images || []
+    const image = images[0] || {}
+    const imageURL = image.url ? `${process.env.API_URL}${image.url}` : false
+
     return (
         <Layout>
             <Head>
                 <title>{product.title} - {store.generalInfo.siteName}</title>
+                <meta property="og:title" content={product.title}/>
+                { imageURL && <meta property="og:image" content={imageURL}/> }
             </Head>
             <div className="px-4">
                 <div className="container">
