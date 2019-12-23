@@ -4,7 +4,7 @@ import LayoutFooter from './LayoutFooter'
 
 export default inject('store')(observer((props) => {
     return (
-        <div className="my-4">
+        <div className="py-4">
             <LayoutHeader/>
             {props.children}
             <LayoutFooter/>
