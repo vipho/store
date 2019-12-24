@@ -10,8 +10,8 @@ import ProductDescription from "../../components/ProductDescription"
 
 const Index = inject('store')(observer(({ product, store }) => {
     const images = product.images || []
-    const image = images[0] || {}
-    const imageURL = image.url ? `${process.env.API_URL}${image.image.url}` : '/assets/teddy-bear.png'
+    const image = images[0] || null
+    const imageURL = image ? `${process.env.API_URL}${image.image.url}` : '/assets/teddy-bear.png'
     const [activeImage, setActiveImage] = useState(image)
 
     return (
