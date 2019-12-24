@@ -1,18 +1,18 @@
 import Link from 'next/link'
 
-export default ({ data }) => {
-    const prices = data.prices.map(({ price }) => price)
+export default ({ product }) => {
+    const prices = product.prices.map(({ price }) => price)
     const minPrice = prices.length !== 0 ? Math.min(...prices) : 0
 
-    const images = data.images || []
+    const images = product.images || []
     const image = images[0] || {}
-    const imageURL = image.url ? `${process.env.API_URL}${image.url}` : '/assets/teddy-bear.png'
+    const imageURL = image.image ? `${process.env.API_URL}${image.image.url}` : '/assets/teddy-bear.png'
 
     return (
         <div className="col-sm-4 col-md-3 py-4">
             <div className="product">
-                <Link href={`/product/${data.id}`}><a><div className="product__image"/></a></Link>
-                <Link href={`/product/${data.id}`}><a className="product__title">{data.title}</a></Link>
+                <Link href={`/product/${product.id}`}><a><div className="product__image"/></a></Link>
+                <Link href={`/product/${product.id}`}><a className="product__title">{product.title}</a></Link>
                 <p className="product__price">
                     от {minPrice} &#8372;
                 </p>

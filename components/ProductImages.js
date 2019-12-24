@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 
-export default ({ product }) => {
-    const images = product.images || []
-    const [activeImage, setActiveImage] = useState(images[0])
-    const imageSrc = activeImage ? ( process.env.API_URL + activeImage.url ) : '/assets/teddy-bear.png'
+export default ({ product, activeImage }) => {
+    const imageSrc = activeImage ? ( process.env.API_URL + activeImage.image.url ) : '/assets/teddy-bear.png'
 
     return (
         <>
@@ -20,29 +18,30 @@ export default ({ product }) => {
                     />
                 </a>
             </div>
-            {
-                images.length !== 0 && (
-                    <div className="container">
-                        <div className="row">
-                            {
-                                product.images.map((item) => (
-                                    <div
-                                        key={item.id}
-                                        className="col-sm-3 col-4 py-4"
-                                    >
-                                        <div onClick={() => setActiveImage(item)} className={classNames('mini-image mini-image_mini', { 'mini-image_active': activeImage === item })}>
-                                            <div
-                                                className="mini-image__image"
-                                                style={{ backgroundImage: `url(${process.env.API_URL}/${item.url})` }}
-                                            />
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
-                )
-            }
+            {/*{*/}
+            {/*    images.length !== 0 && (*/}
+            {/*        <div className="container">*/}
+            {/*            <div className="row">*/}
+            {/*                {*/}
+            {/*                    product.images.map((item) => (*/}
+            {/*                        <div*/}
+            {/*                            key={item.id}*/}
+            {/*                            className="col-sm-3 col-4 py-4"*/}
+            {/*                        >*/}
+            {/*                            <div onClick={() => setActiveImage(item)} className={classNames('mini-image mini-image_mini', { 'mini-image_active': activeImage === item })}>*/}
+            {/*                                <div*/}
+            {/*                                    className="mini-image__image"*/}
+            {/*                                    style={{ backgroundImage: `url(${process.env.API_URL}/${item.url})` }}*/}
+            {/*                                />*/}
+            {/*                            </div>*/}
+            {/*                            <p className="mini-image-description text-truncate">as</p>*/}
+            {/*                        </div>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )*/}
+            {/*}*/}
             <style jsx>{`
                 @import 'everywhere.scss';
                 
@@ -71,6 +70,11 @@ export default ({ product }) => {
                     background-size: cover;
                     border-radius: 4px;
                     position: relative;
+                }
+                .mini-image-description {
+                    font-size: 12px;
+                    margin: 4px 0 0 0;
+                    text-align: center;
                 }
             `}</style>
         </>

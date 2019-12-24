@@ -22,7 +22,7 @@ const Index = inject('store')(observer(({ products, store }) => {
                 <div className="container">
                     <div className="row">
                         {
-                          products.map((data) => <ListItem key={data.id} data={data}/>)
+                          products.map((product) => <ListItem key={product.id} product={product}/>)
                         }
                     </div>
                 </div>

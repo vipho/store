@@ -2,9 +2,17 @@ import { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import ProductDescriptionForm from "./ProductDescriptionForm";
 
-export default ({ product }) => {
+import find from 'lodash/find'
+
+export default ({ product, setActiveImage }) => {
     const [color, setColor] = useState(product.colors[0] || {})
     const [price, setPrice] = useState(product.prices[0] || {})
+
+    useEffect(() => {
+        const activeImage = find(product.images, { color, size: price.size })
+        setActiveImage(activeImage)
+    }, [color, price])
+
 
     return (
         <>

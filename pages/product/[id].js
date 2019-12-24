@@ -1,6 +1,7 @@
 import fetch from "isomorphic-unfetch"
 import Router from 'next/router'
 import Head from "next/head";
+import { useState } from 'react'
 import {inject, observer} from "mobx-react";
 
 import Layout from "../../components/Layout"
@@ -10,7 +11,8 @@ import ProductDescription from "../../components/ProductDescription"
 const Index = inject('store')(observer(({ product, store }) => {
     const images = product.images || []
     const image = images[0] || {}
-    const imageURL = image.url ? `${process.env.API_URL}${image.url}` : false
+    const imageURL = image.url ? `${process.env.API_URL}${image.image.url}` : '/assets/teddy-bear.png'
+    const [activeImage, setActiveImage] = useState(image)
 
     return (
         <Layout>
@@ -23,10 +25,10 @@ const Index = inject('store')(observer(({ product, store }) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 p-0">
-                            <ProductImages product={product}/>
+                            <ProductImages product={product} activeImage={activeImage}/>
                         </div>
                         <div className="col-md-6 py-4">
-                            { product && <ProductDescription product={product}/> }
+                            { product && <ProductDescription product={product} setActiveImage={setActiveImage}/> }
                         </div>
                     </div>
                 </div>
