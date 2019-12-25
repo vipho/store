@@ -20,6 +20,10 @@ export default (props) => {
             setError('Не введён номер телефона')
             return
         }
+        if (formName === '') {
+            setError('Не введено ФИО')
+            return
+        }
         try {
             await axios.post(`${process.env.API_URL}/orders`, {
                 product: props.productId,
@@ -59,6 +63,7 @@ export default (props) => {
                     <div className="form-group">
                         <label>ФИО</label>
                         <input value={formName} onChange={({ target }) => setFormName(target.value)} type="text" className="form-control"/>
+                        <small className="form-text text-muted">Обязательно</small>
                     </div>
                     <div className="form-group">
                         <label>Город</label>
