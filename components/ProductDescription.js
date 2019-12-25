@@ -4,24 +4,31 @@ import ProductDescriptionForm from "./ProductDescriptionForm";
 
 import find from 'lodash/find'
 
-export default ({ product, setActiveImage }) => {
-    const [color, setColor] = useState(product.colors[0] || {})
-    const [price, setPrice] = useState(product.prices[0] || {})
+export default ({ product, colors, sizes, setActiveImage }) => {
+    const [color, setColor] = useState(colors[0] || null)
+    const [size, setSize] = useState(sizes[0] || null)
+    const [price, setPrice] = useState(size && find(product.prices, { size: { id: size.id } }))
 
     useEffect(() => {
-        const activeImage = find(product.images, { color, size: price.size })
+        const activeImage = size && color && find(product.images, { color: { id: color.id }, size: { id: size.id } })
         setActiveImage(activeImage)
-    }, [color, price])
 
+        const newPrice = size && find(product.prices, { size: { id: size.id } })
+        setPrice(newPrice)
+    }, [size, color])
 
     return (
         <>
             <h1 className="h4">{ product.title }</h1>
 
-            { product.colors.length !== 0 && (
+            { product.description && (
+                <p className="description">{product.description}</p>
+            )}
+
+            { colors.length !== 0 && (
                 <div className="option-group">
                     <h2 className="option-group__heading">Цвет</h2>
-                    { product.colors.map((item) => (
+                    { colors.map((item) => (
                         <button
                             key={item.id}
                             onClick={() => setColor(item)}
@@ -33,23 +40,23 @@ export default ({ product, setActiveImage }) => {
                 </div>
             )}
 
-            { product.prices.length !== 0 && (
+            { sizes.length !== 0 && (
                 <div className="option-group">
                     <h2 className="option-group__heading">Размер</h2>
-                    { product.prices.map((item) => item.size ? (
+                    { sizes.map((item) => (
                         <button
                             key={item.id}
-                            onClick={() => setPrice(item)}
-                            className={classNames('option-group__button', { 'option-group__button_active': price === item })}
+                            onClick={() => setSize(item)}
+                            className={classNames('option-group__button', { 'option-group__button_active': size === item })}
                         >
-                            {item.size.value}
+                            {item.value}
                         </button>
-                    ) : null)}
+                    ))}
                 </div>
             )}
 
             <div className="option-group">
-                <h2 className="option-group__price">{price.price || 0} &#8372;</h2>
+                <h2 className="option-group__price">{price ? price.price : 0} &#8372;</h2>
             </div>
 
             <ProductDescriptionForm productId={product.id} color={color} price={price}/>
@@ -57,6 +64,9 @@ export default ({ product, setActiveImage }) => {
             <style jsx>{`
                 @import 'everywhere.scss';
                 
+                .description {
+                    margin: 24px 0 0 0;
+                }
                 .option-group {
                     margin-top: 24px;
                 }

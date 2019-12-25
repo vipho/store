@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 
-export default ({ product, activeImage }) => {
+export default ({ product, activeImage, setActiveImage }) => {
     const imageSrc = activeImage ? ( process.env.API_URL + activeImage.image.url ) : '/assets/teddy-bear.png'
+
+    const [imagesOpened, setImagesOpened] = useState(false)
 
     return (
         <>
@@ -18,30 +20,39 @@ export default ({ product, activeImage }) => {
                     />
                 </a>
             </div>
-            {/*{*/}
-            {/*    images.length !== 0 && (*/}
-            {/*        <div className="container">*/}
-            {/*            <div className="row">*/}
-            {/*                {*/}
-            {/*                    product.images.map((item) => (*/}
-            {/*                        <div*/}
-            {/*                            key={item.id}*/}
-            {/*                            className="col-sm-3 col-4 py-4"*/}
-            {/*                        >*/}
-            {/*                            <div onClick={() => setActiveImage(item)} className={classNames('mini-image mini-image_mini', { 'mini-image_active': activeImage === item })}>*/}
-            {/*                                <div*/}
-            {/*                                    className="mini-image__image"*/}
-            {/*                                    style={{ backgroundImage: `url(${process.env.API_URL}/${item.url})` }}*/}
-            {/*                                />*/}
-            {/*                            </div>*/}
-            {/*                            <p className="mini-image-description text-truncate">as</p>*/}
-            {/*                        </div>*/}
-            {/*                    ))*/}
-            {/*                }*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    )*/}
-            {/*}*/}
+            {
+                product.images.length !== 0 && (
+                    <>
+                        <div className="p-4 d-flex justify-content-center">
+                            <button
+                                onClick={() => setImagesOpened(!imagesOpened)}
+                                className="store-button"
+                            >
+                                {imagesOpened ? 'Скрыть картинки' : 'Показать картинки'}
+                            </button>
+                        </div>
+                        <div className="container" style={imagesOpened ? null :{ display: 'none' }}>
+                            <div className="row justify-content-center">
+                                {
+                                    product.images.map((item) => (
+                                        <div
+                                            key={item.id}
+                                            className="col-sm-3 col-4 py-4"
+                                        >
+                                            <div onClick={() => setActiveImage(item)} className={classNames('mini-image mini-image_mini', { 'mini-image_active': activeImage === item })}>
+                                                <div
+                                                    className="mini-image__image"
+                                                    style={{ backgroundImage: `url(${process.env.API_URL}/${item.image.url})` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </>
+                )
+            }
             <style jsx>{`
                 @import 'everywhere.scss';
                 

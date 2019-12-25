@@ -2,20 +2,16 @@
 @import 'custom';
 @import "~bootstrap/scss/bootstrap";
 
-//@include media-breakpoint-down(sm) {
-//    .container {
-//        @include make-container(30px);
-//        @include make-container-max-widths();
-//    }
-//
-//    // 100% wide container at all breakpoints
-//    .container-fluid {
-//        @include make-container(30px);
-//    }
-//
-//    .row {
-//        @include make-row(30px);
-//    }
-//
-//    @include make-grid-columns($grid-columns, 30px);
-//}
+.store-button {
+    background: $store-color-light;
+    color: $store-color-dark;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #{$store-color-secondary};
+    outline: none !important;
+    margin-top: 8px;
+
+    &:active {
+        border-color: $store-color-primary;
+    }
+}

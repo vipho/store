@@ -43,7 +43,7 @@ export default (props) => {
         <>
             { formStatus === 'closed' && (
                 <button
-                    className="order-button mt-4"
+                    className="store-button mt-4"
                     onClick={() => setFormStatus('opened')}
                 >
                     Хочу купить!
@@ -72,7 +72,7 @@ export default (props) => {
                         <label>Комментарий</label>
                         <textarea value={formComment} onChange={({ target }) => setFormComment(target.value)} className="form-control"/>
                     </div>
-                    <input type="submit" className="order-button" value="Заказать"/>
+                    <input type="submit" className="store-button" value="Заказать"/>
                     {
                         error && (
                             <div className="alert alert-warning" role="alert">
@@ -90,21 +90,9 @@ export default (props) => {
             <style jsx>{`
                 @import 'everywhere.scss';
                 
-                .order-button {
-                    background: $store-color-light;
-                    color: $store-color-dark;
+                .store-button {
                     width: 100%;
-                    padding: 8px;
-                    border-radius: 4px;
-                    border: 1px solid #{$store-color-secondary};
-                    outline: none;
-                    margin-top: 8px;
-                    
-                    &:active {
-                       border-color: $store-color-primary;
-                    }
                 }
-                
                 .alert {
                     margin: 24px 0 0 0;
                 }
