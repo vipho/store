@@ -77,7 +77,7 @@ export default (props) => {
                         <label>Комментарий</label>
                         <textarea value={formComment} onChange={({ target }) => setFormComment(target.value)} className="form-control"/>
                     </div>
-                    <input type="submit" className="store-button" value="Заказать"/>
+                    <input type="submit" className="store-button mt-2" value="Заказать"/>
                     {
                         error && (
                             <div className="alert alert-warning" role="alert">

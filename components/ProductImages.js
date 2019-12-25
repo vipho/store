@@ -23,7 +23,7 @@ export default ({ product, activeImage, setActiveImage }) => {
             {
                 product.images.length !== 0 && (
                     <>
-                        <div className="p-4 d-flex justify-content-center">
+                        <div className="px-4 d-flex justify-content-center">
                             <button
                                 onClick={() => setImagesOpened(!imagesOpened)}
                                 className="store-button"
@@ -32,7 +32,7 @@ export default ({ product, activeImage, setActiveImage }) => {
                             </button>
                         </div>
                         <div className="container" style={imagesOpened ? null :{ display: 'none' }}>
-                            <div className="row justify-content-center">
+                            <div className="row">
                                 {
                                     product.images.map((item) => (
                                         <div
