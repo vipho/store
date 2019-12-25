@@ -11,8 +11,8 @@ export default ({ product }) => {
     return (
         <div className="col-sm-4 col-md-3 py-4">
             <div className="product">
-                <Link href={`/product/${product.id}`}><a><div className="product__image"/></a></Link>
-                <Link href={`/product/${product.id}`}><a className="product__title">{product.title}</a></Link>
+                <Link href={`/product/[id]`} as={`/product/${product.id}`}><a><div className="product__image"/></a></Link>
+                <Link href={`/product/[id]`} as={`/product/${product.id}`}><a className="product__title">{product.title}</a></Link>
                 <p className="product__price">
                     от {minPrice} &#8372;
                 </p>
